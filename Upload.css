@@ -1,0 +1,22 @@
+/* Style the container for inputs */
+.container2 {
+    background-color: whitesmoke;
+    padding: 20px;
+  }
+
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: black;
+    font-size: medium;
+  }
+
+  .container3 {
+    background-color:wheat;
+    padding: 20px;
+  }
+
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: black;
+    font-size: medium;
+  }
