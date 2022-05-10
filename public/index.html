@@ -1,124 +1,38 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel = "stylesheet" href="Upload.css">
-    </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel = "stylesheet" href="Welcome.css">
+  <script src ="Welcome.js"></script>
+</head>
 <body>
-
-<div class="container2">
-    <p>Click on the "Choose File" button to upload a file:</p>
-<form action="/FileStatus.html">
-  <input type="file" id="myFile" name="filename">  
-</form>
-
-<form action="/FileStatus.html">
-    <p>Enter any data to be Uploaded</p>
-    <textarea rows="5" cols="50" name="q"></textarea>
-    <br>
-  </form>
-
-  <br>
-  <a href="FileStatus.html">
-    <input type="submit" value="Upload">
-  </a>
+  <h2>Login to Upload and Download Files</h2>
+  <div class="container">
+    <form action="/Upload.html">
+      <label for="usrname"><strong>Username</strong></label>
+      <input type="text" id="usrname" name="usrname" required autocomplete="off">
+      <br> <br>
+      <label for="psw"><strong>Password</strong></label>
+      <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" autocomplete="off"
+       title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+      <br> <br>
+      <a href="Upload.html">
+      <input type="submit" value="LOGIN">
+    </a>
+      &nbsp; &nbsp;
+      <input type="reset"  value="CLEAR">
+    </form>
+  </div>
   
-</div>
-
-<div class="container3">
-    <p>Click on the "Choose File" button to download a file:</p>
-<form>
-  <input type="file" id="myFile" name="filename">  
-  <br>
-  <br>
-  <a href="" download="">
-    <input type="submit" value="Download">
-  </a>
-</form>
-</div>
-<div id="results"></div>
-
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-
-			/*
-				Get the search query from the URL. For example:
-				http://xss-example-page.nowhere/?q=Searching+for+things
-			*/
-			var q = getQueryParameter('q');
-
-			if (q) {
-
-				search(q, function(error, results) {
-					showQueryAndResults(q, results);
-				});
-			}
-		});
-
-		function search(q, callback) {
-
-			// Fake results. We don't actually searching anything.
-			var results = [
-				'Result #1',
-				'Result #2',
-				'Result #3'
-			];
-
-			callback(null, results);
-		}
-
-		function showQueryAndResults(q, results) {
-
-			var resultsEl = document.querySelector('#results');
-			var html = '';
-
-			html += '<p>Your search query:</p>';
-			html += '<pre>' + q + '</pre>';
-			html += '<ul>';
-
-			for (var index = 0; index < results.length; index++) {
-				html += '<li>' + results[index] + '</li>';
-			}
-
-			html += '</ul>';
-
-			resultsEl.innerHTML = html;
-		}
-
-		function getQueryParameter(name) {
-
-			var pairs = window.location.search.substring(1).split('&');
-			var pair;
-
-			for (var index = 0; index < pairs.length; index++) {
-
-				pair = pairs[index].split('=');
-
-				if (decodeURIComponent(pair[0]) === name) {
-					return decodeURIComponent(pair[1]);
-				}
-			}
-
-			return false;
-		}
-	</script>
-
+  <div id="message">
+    <h3>Password must contain the following:</h3>
+    <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+    <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+    <p id="number" class="invalid">A <b>number</b></p>
+    <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+  </div>
 </body>
 </html>
-
-<!-- function showQueryAndResults(q, results) {
-
-	var resultsEl = document.querySelector('#results');
-	var html = '';
-
-	html += '<p>Your search query:</p>';
-	html += '<pre>' + q + '</pre>';
-	html += '<ul>';
-
-	for (var index = 0; index < results.length; index++) {
-		html += '<li>' + results[index] + '</li>';
-	}
-
-	html += '</ul>';
-
-	resultsEl.innerHTML = html;
-} -->
